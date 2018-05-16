@@ -55,7 +55,7 @@ impasses são tratados pelo fato do nó soltar um garfo se não conseguir ambos,
 <p>ou por outra fonte, o formato mtx é muito simples sendo constituído de seus 4 primeiros bytes
 a dimensão da matriz e o resto a matriz em sí em ordem de coluna maior com cada elemento sendo 1 byte
 </p>
-<p>para executar o filósof basta usar o comando</p>
+<p>para executar o filósofo basta usar o comando</p>
 <code>./philosopher [ip para mesa] [modo] [parâmetros] ...</code>
 <p>sendo os modos</p>
 <code>
