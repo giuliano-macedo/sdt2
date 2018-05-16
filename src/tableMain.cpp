@@ -1,5 +1,6 @@
 #include "Table.hpp"
 #include <thread>
+#include <sys/time.h>
 Table* T;
 void err(const char* msg){
 	fprintf(stderr, "%s\n", msg);
@@ -57,7 +58,7 @@ int main(int argc,char** argv){
 	}
 	FILE* matFile=fopen(argv[1],"r");
 	if(!matFile)err("error opening mtx file");
-	float maxPhiTime=atof(argv[2]);
+	double maxPhiTime=atof(argv[2]);
 	if(maxPhiTime<=0)err("invalid max philosopher think time");
 	
 	printf("Reading %s ...\n",argv[1]);
@@ -71,6 +72,7 @@ int main(int argc,char** argv){
 	if(bind(svsock,(struct sockaddr*)&svaddr,sizeof(svaddr))<0)err("bind() failed");
 	if(listen(svsock, 3)<0)err("listen() failed");
 	printf("table started\n");
+	struct timeval tv={0,(uint)(maxPhiTime*1000)};
 
 	while(1){
 		clntlen = sizeof(struct sockaddr_in);
@@ -78,6 +80,7 @@ int main(int argc,char** argv){
 		int* clntsock=new int();
 		if((*clntsock=accept(svsock,(struct sockaddr*)clntaddr,&clntlen)) < 0)err("accept() failed");
 		printf("handling philosopher %s\n",inet_ntoa(clntaddr->sin_addr));
+		setsockopt(*clntsock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof(tv));
 		new std::thread(phiHandler,*clntsock,clntaddr);
 	}
 	shutdown(svsock, 2);
