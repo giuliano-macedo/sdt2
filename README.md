@@ -1,17 +1,23 @@
 <h1>Problema dos Jantar dos Filósofos em Sistemas Distribuidos</h1>
 esse projeto foi o segundo trabalho da disciplina de Sistemas Distribuidos UFMS-CPPP
 <h2>funcionamento</h2>
+<p>
 Há dois tipos de nós da rede, o servidor (Mesa) e o cliente (Filósofo), o filósofo
 só pode em estar em dois estados, comendo ou pensando, o pensar pode ser
 o calculo de n digitos de pi, uma espera de n ms ou até o apertar do enter do usuário
 quando ele termina de pensar ele requisita a mesa uma matriz não-singular quadrada,
 e depois envia devolta sua matriz inversa, esse é o estado de comer, caso retorne uma matriz inválida
-ele é expulso da mesa. Enquanto isso na mesa, ele organiza todos os filósofos numa pilha duplamente lincada
+ele é expulso da mesa. 
+</p>
+<p>
+Enquanto isso na mesa, ele organiza todos os filósofos numa pilha duplamente lincada
 circular, de forma que cada nó tenha dois ponteiros para um mutex, um esquerdo e um direito, assim cada filósofo adjacente 
 tem um mutex (garfo) em comum, cada filósofo só pode comer quando fizer o lock nos dois mutexes,
-desta forma o algorítmo resolve o problema tratando de impasses e fome, com uma fila de prioridades, quando um filósofo não consegue
+desta forma o algorítmo resolve o problema tratando de impasses e fome através de uma fila de prioridades, quando um filósofo não consegue
 fazer o lock de ambos os garfos, ele se inclui numa fila, e depois essa fila será executada pelo nó que está ocupado esse garfo.
 em resumo o algorítmo pode ser expresso nisso toda vez que uma requisição de comer for feita:
+</p>
+<code>
 1.checar se a fila tem os garfos desse nó atual
 	1.1se sim
 		adicione-se na fila
@@ -25,9 +31,11 @@ em resumo o algorítmo pode ser expresso nisso toda vez que uma requisição de 
 	2.1 caso contrário
 		mande matriz não singular quadrada para filósofo
 		execute monitor
-O monitor tem o propósito de atender o primeiro nó da fila, desta forma ele garante o lock de ambos os garfos, e
-impasses são tratados pelo fato do nó soltar um garfo se não conseguir o outro, e resolve fome por executar sempre o primeiro da fila
-
+</code>
+<p>
+O monitor tem o propósito de atender o primeiro nó da fila e o remove da fila, desta forma ele garante o lock de ambos os garfos, e
+impasses são tratados pelo fato do nó soltar um garfo se não conseguir ambos, e resolve fome por executar sempre o primeiro da fila.
+</p>
 <h2>Pré-requerimentos</h2>
 <ul>
 	<li>g++</li>
