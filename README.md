@@ -47,21 +47,21 @@ impasses são tratados pelo fato do nó soltar um garfo se não conseguir ambos,
 	<li>gmp</li>
 </ul>
 <h2>Executar</h2>
-para executar a mesa basta usar o comando
+<p>para executar a mesa basta usar o comando</p>
 <code>./table [caminho para arquivo mtx] [tempo máxio de pensamento de filósofo (ms)]</code>
-o arquivo mtx pode ser gerado pelo binário genmtx com
+<p>o arquivo mtx pode ser gerado pelo binário genmtx com</p>
 <code>./genmtx [dimensão das matrizes] [número de matrizes] [saida.mtx]</code>
-ou por outra fonte, o formato mtx é muito simples sendo constituído de seus 4 primeiros bytes
+<p>ou por outra fonte, o formato mtx é muito simples sendo constituído de seus 4 primeiros bytes
 a dimensão da matriz e o resto a matriz em sí em ordem de coluna maior com cada elemento sendo 1 byte
-
-para executar o filósof basta usar o comando
+</p>
+<p>para executar o filósof basta usar o comando</p>
 <code>./philosopher [ip para mesa] [modo] [parâmetros] ...</code>
-sendo os modos
+<p>sendo os modos</p>
 <code>
 pi [menor digito] [digito máximo] 
 sleep [min(ms)] [max(ms)] 
 manual
 </code>
 <h2>compilar</h2>
-para compilar todos os binários basta executar <code>make</code> caso algum binári específico
-execute <code>make [binario específico]</code>
+<p>para compilar todos os binários basta executar <code>make</code>, caso queira algum binário específico
+execute <code>make [binario específico]</code></p>
