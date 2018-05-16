@@ -42,6 +42,11 @@ void Table::monitor(){
 	}
 	std::deque<QueueTask>::iterator it = queue.begin();
 	while(it != queue.end()){
+		if(!(*it).node->sock){
+			queue.erase(it);
+			it++;
+			continue;
+		}
 		if((*it).node->lgarfo->try_lock()){
 			if((*it).node->rgarfo->try_lock()){
 				if((*it).type==EAT){
@@ -71,6 +76,7 @@ void Table::monitor(){
 	queueMutex.unlock();
 }
 void Table::eat(PhiNode* p){
+	if(!p->sock)throw std::runtime_error("null socket");
 	matMutex.lock();
 	arma::fmat mat=matrices.back();
 	matrices.pop_back();
@@ -117,6 +123,7 @@ void Table::remove(PhiNode* phi){
 	delete phi->lgarfo;
 	pop(phi);
 	phis.erase(phi->sock);
+	phi->sock=0;
 	mtx.unlock();
 	phi->rgarfo->unlock();
 	monitor();
@@ -235,5 +242,5 @@ void Table::pop(PhiNode* which){
 			which->next->prev=which->prev;
 		}
 	}
-	delete which;
+	// delete which;
 }

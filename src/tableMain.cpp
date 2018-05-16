@@ -33,12 +33,12 @@ void phiHandler(int sock,sockaddr_in* addr){
 	while(1){
 		if(recv(sock,(void*)&ret,sizeof(int),0)!=(int)(sizeof(int))){
 			printf("[Error] failed receiving phi eat request\n");
-			T->removePhi(sock);
+			// T->removePhi(sock);
 			return;
 		}
 		if(ret!=1){
 			printf("[Error] wrong phi eat request \n");
-			T->removePhi(sock);
+			// T->removePhi(sock);
 			return;	
 		}
 		try{

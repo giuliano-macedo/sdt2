@@ -17,9 +17,7 @@ enum Modes{
 	SLEEP,
 	MANUAL
 };
-void printPi(uint di){
-
-}
+void printPi(uint di);
 int main(int argc,char** argv){
 	if(argc<3){
 		fprintf(stderr, "[usage] %s [ip to table] [mode] [params] ...\n",argv[0] );
@@ -69,12 +67,15 @@ int main(int argc,char** argv){
 	if(connect(sock, (struct sockaddr *) &svaddr, sizeof(svaddr)) < 0)err("connect() failed");
 	if(mode==MANUAL){printf("press enter to think\n");}
 	while(1){
+		uint ru=dis(gen);
 		switch(mode){
 			case PI:
-				printPi(dis(gen));
+				printf("generating %u pi digits\n",ru);
+				printPi(ru);
 				break;
 			case SLEEP:
-				usleep(dis(gen)*1000);
+				printf("sleeping for %u ms\n",ru);
+				usleep(ru*1000);
 				break;
 			case MANUAL:
 				getchar();
