@@ -42,9 +42,10 @@ impasses são tratados pelo fato do nó soltar um garfo se não conseguir ambos,
 	<li>make</li>
 	<li>OpenBlas</li>
 	<li>LAPPACK</li>
-	<li>armadillo</li>
+	<li>Armadillo</li>
 	<li>POSIX sockets</li>
-	<li>gmp</li>
+	<li>Pthreads</li>
+	<li>GMP</li>
 </ul>
 <h2>Executar</h2>
 <p>para executar a mesa basta usar o comando</p>
