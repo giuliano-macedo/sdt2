@@ -13,7 +13,7 @@ ele é expulso da mesa.
 Enquanto isso na mesa, ele organiza todos os filósofos numa pilha duplamente lincada
 circular, de forma que cada nó tenha dois ponteiros para um mutex, um esquerdo e um direito, assim cada filósofo adjacente 
 tem um mutex (garfo) em comum, cada filósofo só pode comer quando fizer o lock nos dois mutexes,
-desta forma o algorítmo resolve o problema tratando de impasses e fome através de uma fila de prioridades, quando um filósofo não consegue
+desta forma o algorítmo resolve o problema tratando de impasses e fome através de uma fila, quando um filósofo não consegue
 fazer o lock de ambos os garfos, ele se inclui numa fila, e depois essa fila será executada pelo nó que está ocupado esse garfo.
 em resumo o algorítmo pode ser expresso nisso toda vez que uma requisição de comer for feita:
 </p>
